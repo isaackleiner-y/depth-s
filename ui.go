@@ -52,7 +52,9 @@ func drawFrame(screen tcell.Screen) {
 	screen.SetContent(offsetX+gameWidth-1, offsetY+gameHeight-1, '┘', nil, grayBorder)
 
 	// окна статистики
-	charOffsetX := offsetX + gameWidth + 1
+
+	// character
+	charOffsetX := offsetX + gameWidth
 	charOffsetY := offsetY
 
 	for x := 0; x < characterWindowWidth; x++ {
@@ -69,4 +71,23 @@ func drawFrame(screen tcell.Screen) {
 	screen.SetContent(charOffsetX+characterWindowWidth-1, charOffsetY, '┐', nil, grayBorder)
 	screen.SetContent(charOffsetX, charOffsetY+characterWindowHeigth-1, '└', nil, grayBorder)
 	screen.SetContent(charOffsetX+characterWindowWidth-1, charOffsetY+characterWindowHeigth-1, '┘', nil, grayBorder)
+
+	//bar
+	barOffsetX := offsetX + gameWidth + characterWindowWidth
+	barOffsetY := offsetY
+
+	for x := 0; x < barsWindowWidth; x++ {
+		screen.SetContent(barOffsetX+x, barOffsetY, '─', nil, grayBorder)
+		screen.SetContent(barOffsetX+x, barOffsetY+barsWindowHeight-1, '─', nil, grayBorder)
+	}
+
+	for y := 0; y < barsWindowHeight; y++ {
+		screen.SetContent(barOffsetX, barOffsetY+y, '│', nil, grayBorder)
+		screen.SetContent(barOffsetX+barsWindowWidth-1, barOffsetY+y, '│', nil, grayBorder)
+	}
+
+	screen.SetContent(barOffsetX, barOffsetY, '┌', nil, grayBorder)
+	screen.SetContent(barOffsetX+barsWindowWidth-1, barOffsetY, '┐', nil, grayBorder)
+	screen.SetContent(barOffsetX, barOffsetY+barsWindowHeight-1, '└', nil, grayBorder)
+	screen.SetContent(barOffsetX+barsWindowWidth-1, barOffsetY+barsWindowHeight-1, '┘', nil, grayBorder)
 }

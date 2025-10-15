@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	appWidth  = gameWidth + characterWindowWidth
+	appWidth  = gameWidth + characterWindowWidth + barsWindowWidth
 	appHeight = gameHeight
 
 	gameWidth  = 80
@@ -16,6 +16,9 @@ const (
 
 	characterWindowWidth  = 17
 	characterWindowHeigth = 5
+
+	barsWindowWidth  = 20
+	barsWindowHeight = 5
 )
 
 // создание монеток
@@ -46,6 +49,10 @@ func main() {
 
 	score := 0
 	level := 1
+	hp := 100
+	stamina := 100
+	exp := 0
+	playerName := "Isaac"
 
 	// game loop
 	run := true
@@ -55,6 +62,8 @@ func main() {
 		offsetY := (sh - appHeight) / 2
 		charOffsetX := offsetX + gameWidth + 1
 		charOffsetY := offsetY
+		barOffsetX := offsetX + gameWidth + characterWindowWidth
+		barOffsetY := offsetY
 
 		screen.Clear()
 		drawFrame(screen)
@@ -74,15 +83,29 @@ func main() {
 
 		// окно с игроком
 		CharacterWindow := "Character"
-		charName := "Bober"
-		scoreStr := "Score:"
-		levelStr := "Level:"
-		drawString(screen, charOffsetX+(len(CharacterWindow)/2), charOffsetY, CharacterWindow)
-		drawString(screen, 1+charOffsetX+1, charOffsetY+1, "Name: "+charName)
-		drawString(screen, 1+charOffsetX+1, charOffsetY+2, scoreStr)
-		drawCharacterInfo(screen, charOffsetX+(len(scoreStr))+2, charOffsetY+2, score)
-		drawString(screen, 1+charOffsetX+1, charOffsetY+3, levelStr)
-		drawCharacterInfo(screen, charOffsetX+(len(levelStr))+2, charOffsetY+3, level)
+		drawString(screen, charOffsetX+3, charOffsetY, CharacterWindow)
+		//вывод значений
+		drawString(screen, charOffsetX+1, charOffsetY+1, "Name: ")
+		drawString(screen, charOffsetX+8, charOffsetY+1, playerName)
+
+		drawString(screen, charOffsetX+1, charOffsetY+2, "Score: ")
+		drawCharacterInfo(screen, charOffsetX+8, charOffsetY+2, score)
+
+		drawString(screen, charOffsetX+1, charOffsetY+3, "Level: ")
+		drawCharacterInfo(screen, charOffsetX+8, charOffsetY+3, exp)
+
+		//окно с барами
+		BarsWindow := "Bars"
+		drawString(screen, barOffsetX+8, barOffsetY, BarsWindow)
+		//вывод значений hp, stn, exp
+		drawString(screen, barOffsetX+2, barOffsetY+1, "HP: ")
+		drawCharacterInfo(screen, barOffsetX+7, barOffsetY+1, hp)
+
+		drawString(screen, barOffsetX+2, barOffsetY+2, "STM: ")
+		drawCharacterInfo(screen, barOffsetX+7, barOffsetY+2, stamina)
+
+		drawString(screen, barOffsetX+2, barOffsetY+3, "EXP: ")
+		drawCharacterInfo(screen, barOffsetX+7, barOffsetY+3, exp)
 
 		screen.Show()
 
