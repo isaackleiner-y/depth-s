@@ -17,7 +17,7 @@ const (
 	characterWindowWidth  = 17
 	characterWindowHeigth = 5
 
-	barsWindowWidth  = 20
+	barsWindowWidth  = 14
 	barsWindowHeight = 5
 )
 
@@ -96,7 +96,7 @@ func main() {
 
 		//окно с барами
 		BarsWindow := "Bars"
-		drawString(screen, barOffsetX+8, barOffsetY, BarsWindow)
+		drawString(screen, barOffsetX+5, barOffsetY, BarsWindow)
 		//вывод значений hp, stn, exp
 		drawString(screen, barOffsetX+2, barOffsetY+1, "HP: ")
 		drawCharacterInfo(screen, barOffsetX+7, barOffsetY+1, hp)
