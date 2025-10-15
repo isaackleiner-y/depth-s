@@ -45,6 +45,7 @@ func main() {
 
 	// game init section
 	player := NewSprite('@', gameWidth/2, gameHeight/2)
+	player.Color = tcell.Color(tcell.ColorGold)
 	coins := setupCoins(1)
 
 	score := 0
@@ -92,7 +93,7 @@ func main() {
 		drawCharacterInfo(screen, charOffsetX+8, charOffsetY+2, score)
 
 		drawString(screen, charOffsetX+1, charOffsetY+3, "Level: ")
-		drawCharacterInfo(screen, charOffsetX+8, charOffsetY+3, exp)
+		drawCharacterInfo(screen, charOffsetX+8, charOffsetY+3, level)
 
 		//окно с барами
 		BarsWindow := "Bars"
